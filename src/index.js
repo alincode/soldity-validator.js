@@ -3,7 +3,7 @@ import isBoolean from './lib/isBoolean';
 import isInt8 from './lib/isInt8';
 import isUint8 from './lib/isUint8';
 
-const version = '0.0.1';
+const version = '0.0.2';
 const validator = {
   version,
   isAddress,
