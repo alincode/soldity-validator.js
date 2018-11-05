@@ -1,4 +1,4 @@
-# soldity-validator.js
+# solidity-validator.js
 
 [![NPM version][npm-image]][npm-url] 
 

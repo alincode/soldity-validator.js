@@ -1,5 +1,5 @@
 {
-  "name": "soldity-validator",
+  "name": "solidity-validator",
   "version": "0.0.1",
   "description": "solidity validator",
   "main": "src/index.js",
@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/alincode/soldity-validator.js.git"
+    "url": "git+https://github.com/alincode/solidity-validator.js.git"
   },
   "keywords": [
     "solidity",
@@ -23,9 +23,9 @@
   "author": "alincode <alincode@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/alincode/soldity-validator.js/issues"
+    "url": "https://github.com/alincode/solidity-validator/issues"
   },
-  "homepage": "https://github.com/alincode/soldity-validator.js#readme",
+  "homepage": "https://github.com/alincode/solidity-validator#readme",
   "devDependencies": {
     "@babel/cli": "^7.0.0",
     "@babel/core": "^7.0.0",
