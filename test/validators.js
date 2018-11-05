@@ -1,0 +1,109 @@
+import {
+  format
+} from 'util';
+
+import validator from '../index';
+
+function test(options) {
+  let args = options.args || [];
+  args.unshift(null);
+  if (options.valid) {
+    options.valid.forEach((valid) => {
+      args[0] = valid;
+      if (validator[options.validator](...args) !== true) {
+        let warning = format(
+          'validator.%s(%s) failed but should have passed',
+          options.validator, args.join(', ')
+        );
+        throw new Error(warning);
+      }
+    });
+  }
+  if (options.invalid) {
+    options.invalid.forEach((invalid) => {
+      args[0] = invalid;
+      if (validator[options.validator](...args) !== false) {
+        let warning = format(
+          'validator.%s(%s) passed but should have failed',
+          options.validator, args.join(', ')
+        );
+        throw new Error(warning);
+      }
+    });
+  }
+}
+
+describe('Validators', () => {
+
+  it('should validate address type', () => {
+    test({
+      validator: 'isAddress',
+      valid: [
+        '0xa77451687Ee77cB3DFf16A24446C54DB76C80222'
+      ],
+      invalid: [
+        '0xa77451687Ee77cB3DFf16A24446C54DB76C80221',
+        '0xa77451687Ee77cB3DFf16A24446C54DB76C80223',
+        '0xa77451687Ee77cB3DFf16A24446C54DB76C80224',
+        '0xa77451687Ee77cB3DFf16A24446C54DB76C80225',
+        '0xa77451687Ee77cB3DFf16A24446C54DB76C80226'
+      ],
+    });
+  });
+
+  it('should validate boolean type', () => {
+    test({
+      validator: 'isBoolean',
+      valid: [
+        'true',
+        'false'
+      ],
+      invalid: [
+        '1',
+        '0',
+        '1.0',
+        '0.0',
+        'true ',
+        'False',
+        'True',
+        'yes',
+      ],
+    });
+  });
+
+  it('should validate int8 type', () => {
+    test({
+      validator: 'isInt8',
+      valid: [
+        '-128',
+        '0',
+        '127'
+      ],
+      invalid: [
+        '-129',
+        '128',
+        '0.1',
+        'true'
+      ],
+    });
+  });
+
+  it('should validate uint8 type', () => {
+    test({
+      validator: 'isUint8',
+      valid: [
+        '0',
+        '7',
+        '255'
+      ],
+      invalid: [
+        '-1',
+        '256',
+        '1000',
+        '0.1',
+        'true'
+      ],
+    });
+  });
+
+});

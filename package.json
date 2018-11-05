@@ -1,0 +1,43 @@
+{
+  "name": "soldity-validator",
+  "version": "0.0.0",
+  "description": "solidity validator",
+  "main": "src/index.js",
+  "scripts": {
+    "pretest": "npm run build",
+    "test": "mocha --require @babel/register --reporter dot",
+    "build:browser": "node --require @babel/register build-browser",
+    "build:node": "babel src -d .",
+    "build": "npm run build:browser && npm run build:node",
+    "release": "rm -rf package-lock.json && npm version minor && npm publish",
+    "patch": "rm -rf package-lock.json && npm version patch && npm publish"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alincode/soldity-validator.js.git"
+  },
+  "keywords": [
+    "solidity",
+    "validator"
+  ],
+  "author": "alincode <alincode@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alincode/soldity-validator.js/issues"
+  },
+  "homepage": "https://github.com/alincode/soldity-validator.js#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.0.0",
+    "@babel/core": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/register": "^7.0.0",
+    "babel-plugin-add-module-exports": "^1.0.0",
+    "mocha": "^5.2.0",
+    "rollup": "^0.67.0",
+    "rollup-plugin-babel": "^4.0.3"
+  },
+  "dependencies": {
+    "bignumber.js": "^8.0.1",
+    "web3-utils": "^1.0.0-beta.36"
+  }
+}
