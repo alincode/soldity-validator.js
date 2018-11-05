@@ -15,7 +15,7 @@ var _isUint = _interopRequireDefault(require("./lib/isUint8"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var version = '0.0.2';
+var version = '0.0.3';
 var validator = {
   version: version,
   isAddress: _isAddress.default,

@@ -2,7 +2,7 @@
   "name": "solidity-validator",
   "version": "0.0.2",
   "description": "solidity validator",
-  "main": "src/index.js",
+  "main": "index.js",
   "scripts": {
     "pretest": "npm run build",
     "test": "mocha --require @babel/register --reporter dot",
