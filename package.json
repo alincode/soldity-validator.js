@@ -1,6 +1,6 @@
 {
   "name": "soldity-validator",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "solidity validator",
   "main": "src/index.js",
   "scripts": {
