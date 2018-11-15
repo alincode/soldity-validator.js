@@ -10,9 +10,20 @@ A library of string validators.
 npm install solidity-validator
 ```
 
+### Function
+
+| Validator              | Description                         |
+|------------------------|-------------------------------------|
+| **isAddress(str)**     | check if a string is a address.     |
+| **isBoolean(str)**     | check if a string is a boolean.     |
+| **isInt8(str)**        | check if a string is a int8.        |
+| **isUint8(str)**       | check if a string is a uint8.       |
+| **isValid(type, str)** | check if a string is match the type |
+| **getRange(type)**     | get type MIN and MAX range          |
+
 ### Example
 
-```
+```js
 var validator = require('solidity-validator');
 
 validator.isAddress('0xa77451687Ee77cB3DFf16A24446C54DB76C80222'); // true
@@ -32,14 +43,22 @@ validator.isUint8('255'); // true
 validator.isUint8('0.1'); // false
 validator.isUint8('-1'); // false
 validator.isUint8('256'); // false
+
+validator.isValid('uint', "123"); // true
+validator.isValid('uint', "280"); // false
+validator.isValid('address', "ooooooxxxxx"); // false
 ```
 
-| Validator          | Description                     |
-|--------------------|---------------------------------|
-| **isAddress(str)** | check if a string is a address. |
-| **isBoolean(str)** | check if a string is a boolean. |
-| **isInt8(str)**    | check if a string is a int8.    |
-| **isUint8(str)**   | check if a string is a uint8.   |
+```js
+validator.getRange('int8');
+
+/* === output ===
+{
+  MIN: -128,
+  MAX: 127
+}
+*/
+```
 
 ### Tests
 
