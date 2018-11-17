@@ -12,14 +12,15 @@ npm install solidity-validator
 
 ### Function
 
-| Validator              | Description                         |
-|------------------------|-------------------------------------|
-| **isAddress(str)**     | check if a string is a address.     |
-| **isBoolean(str)**     | check if a string is a boolean.     |
-| **isInt8(str)**        | check if a string is a int8.        |
-| **isUint8(str)**       | check if a string is a uint8.       |
-| **isValid(type, str)** | check if a string is match the type |
-| **getRange(type)**     | get type MIN and MAX range          |
+| Validator                 | Description                         |
+|---------------------------|-------------------------------------|
+| **isAddress(str)**        | check if a string is a address.     |
+| **isBoolean(str)**        | check if a string is a boolean.     |
+| **isInt8(str)**           | check if a string is a int8.        |
+| **isUint8(str)**          | check if a string is a uint8.       |
+| **isValid(type, str)**    | check if a string is match the type |
+| **getRange(type)**        | get type MIN and MAX range          |
+| **getMessage(type, str)** | get valid message                   |
 
 ### Example
 
@@ -47,6 +48,13 @@ validator.isUint8('256'); // false
 validator.isValid('uint', "123"); // true
 validator.isValid('uint', "280"); // false
 validator.isValid('address', "ooooooxxxxx"); // false
+
+validator.getMessage('uint8', '255');
+validator.getMessage('address', '0xa77451687Ee77cB3DFf16A24446C54DB76C80222');
+validator.getMessage('int8', '129'); // The value is an illegal range.
+validator.getMessage('uint8', '256'); // The value is an illegal range.
+validator.getMessage('bool', '0'); // The value is not a boolean.
+validator.getMessage('address', 'oooooxxxx'); // The value is not a valid address.
 ```
 
 ```js
