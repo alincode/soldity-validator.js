@@ -37,6 +37,15 @@ function test(options) {
 describe('Validators', () => {
 
   it('get type range', () => {
+    assert.equal(validator.getMessage('uint8', '255'), '');
+    assert.equal(validator.getMessage('address', '0xa77451687Ee77cB3DFf16A24446C54DB76C80222'), '');
+    assert.equal(validator.getMessage('int8', '129'), 'The value is an illegal range.');
+    assert.equal(validator.getMessage('uint8', '256'), 'The value is an illegal range.');
+    assert.equal(validator.getMessage('bool', '0'), 'The value is not a boolean.');
+    assert.equal(validator.getMessage('address', 'oooooxxxx'), 'The value is not a valid address.');
+  });
+
+  it('get type range', () => {
     assert(validator.getRange('int8').MIN == -128);
     assert(validator.getRange('int8').MAX == 127);
     assert(validator.getRange('uint8').MIN == 0);
