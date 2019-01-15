@@ -1,9 +1,6 @@
-import {
-  format
-} from 'util';
-
-import assert from 'assert';
-import validator from '../index';
+const format = require('util').format;
+const assert = require('assert');
+const validator = require('../src/index');
 
 function test(options) {
   let args = options.args || [];
@@ -48,18 +45,20 @@ describe('Validators', () => {
   it('get type range', () => {
     assert(validator.getRange('int8').MIN == -128);
     assert(validator.getRange('int8').MAX == 127);
+    assert(validator.getRange('int256').MAX === '57896044618658097711785492504343953926634992332820282019728792003956564819967');
     assert(validator.getRange('uint8').MIN == 0);
     assert(validator.getRange('uint8').MAX == 255);
     assert(validator.getRange('uint16').MAX == 65535);
     assert(validator.getRange('uint24').MAX == 16777215);
     assert(validator.getRange('uint32').MAX == 4294967295);
     assert(validator.getRange('uint40').MAX == 1099511627775);
-    assert(validator.getRange('uint256').MAX == 1.157920892373162e+77);
+    assert(validator.getRange('uint256').MAX === '115792089237316195423570985008687907853269984665640564039457584007913129639935');
   });
 
   it('should check input value', () => {
     assert(validator.isValid('bool', 'true'));
     assert(validator.isValid('uint8', '255'));
+    assert(validator.isValid('uint256', '333'));
     assert(validator.isValid('address', '0xa77451687Ee77cB3DFf16A24446C54DB76C80222'));
     assert.equal(validator.isValid('address', 'oooooxxxx'), false);
   });

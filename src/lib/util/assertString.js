@@ -1,4 +1,6 @@
-export default function assertString(input) {
+module.exports = assertString;
+
+function assertString(input) {
   const isString = (typeof input === 'string' || input instanceof String);
 
   if (!isString) {

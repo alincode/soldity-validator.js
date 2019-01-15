@@ -1,8 +1,9 @@
-import assertString from './util/assertString';
-var Web3Utils = require('web3-utils');
-import isValid from './isValid';
+const assertString = require('./util/assertString');
+const isValid = require('./isValid');
 
-export default function getMessage(type, str) {
+module.exports = getMessage;
+
+function getMessage(type, str) {
   assertString(str);
   if (isValid(type, str)) return '';
   if (type.search(/\buint/) != -1) return 'The value is an illegal range.';

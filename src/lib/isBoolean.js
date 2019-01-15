@@ -1,6 +1,8 @@
-import assertString from './util/assertString';
+const assertString = require('./util/assertString');
 
-export default function isBoolean(str) {
+module.exports = isBoolean;
+
+function isBoolean(str) {
   assertString(str);
   return (['true', 'false'].indexOf(str) >= 0);
 }

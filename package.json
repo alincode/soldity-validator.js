@@ -2,13 +2,10 @@
   "name": "solidity-validator",
   "version": "0.0.5",
   "description": "solidity validator",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "pretest": "npm run build",
-    "test": "mocha --require @babel/register --reporter dot",
-    "build:browser": "node --require @babel/register build-browser",
-    "build:node": "babel src -d .",
-    "build": "npm run build:browser && npm run build:node",
+    "test": "mocha test/**/**.js",
+    "coverage": "nyc --reporter=html --reporter=text mocha test/**/**.js",
     "release": "rm -rf package-lock.json && npm version minor && npm publish",
     "patch": "rm -rf package-lock.json && npm version patch && npm publish"
   },
@@ -32,7 +29,11 @@
     "@babel/preset-env": "^7.0.0",
     "@babel/register": "^7.0.0",
     "babel-plugin-add-module-exports": "^1.0.0",
+    "chai": "^4.2.0",
+    "eslint": "^5.12.0",
+    "eslint-plugin-mocha": "^5.2.1",
     "mocha": "^5.2.0",
+    "nyc": "^13.1.0",
     "rollup": "^0.67.0",
     "rollup-plugin-babel": "^4.0.3"
   },

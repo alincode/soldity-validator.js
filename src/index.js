@@ -1,21 +1,21 @@
-import getMessage from './lib/getMessage';
-import getRange from './lib/getRange';
-import isAddress from './lib/isAddress';
-import isBoolean from './lib/isBoolean';
-import isInt8 from './lib/isInt8';
-import isUint8 from './lib/isUint8';
-import isValid from './lib/isValid';
+const getMessage = require('./lib/getMessage');
+const getRange = require('./lib/getRange');
+const isAddress = require('./lib/isAddress');
+const isBoolean = require('./lib/isBoolean');
+const isInt = require('./lib/isInt');
+const isUint = require('./lib/isUint');
+const isValid = require('./lib/isValid');
 
 const version = '0.0.5';
 const validator = {
   version,
   isAddress,
   isBoolean,
-  isInt8,
-  isUint8,
+  isInt8: (str) => isInt(str, 8),
+  isUint8: (str) => isUint(str, 8),
   isValid,
   getRange,
   getMessage
 };
 
-export default validator;
+module.exports = validator;
