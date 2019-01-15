@@ -6,7 +6,7 @@ const isInt = require('./lib/isInt');
 const isUint = require('./lib/isUint');
 const isValid = require('./lib/isValid');
 
-const version = '0.0.5';
+const version = '0.1.1';
 const validator = {
   version,
   isAddress,
