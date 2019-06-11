@@ -5,9 +5,10 @@ const isBoolean = require('./lib/isBoolean')
 const isInt = require('./lib/isInt')
 const isUint = require('./lib/isUint')
 const isValid = require('./lib/isValid')
+const isBytes = require('./lib/isBytes')
 
-const version = '0.1.1'
-const validator = {
+const version = '0.1.2'
+let validator = {
   version,
   isAddress,
   isBoolean,
@@ -16,6 +17,11 @@ const validator = {
   isValid,
   getRange,
   getMessage,
+  isBytes: str => isBytes(str, 32),
+}
+
+for (let i = 1; i <= 32; i++) {
+  validator[`isBytes${i}`] = str => isBytes(str, i)
 }
 
 module.exports = validator

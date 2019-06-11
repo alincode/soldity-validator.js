@@ -61,7 +61,7 @@ describe('Validators', () => {
     )
   })
 
-  it('get type range', () => {
+  it('get int and uint type range', () => {
     assert(validator.getRange('int8').MIN == -128)
     assert(validator.getRange('int8').MAX == 127)
     assert(
@@ -127,4 +127,28 @@ describe('Validators', () => {
       invalid: ['-1', '256', '1000', '0.1', 'true'],
     })
   })
+
+  // it('should validate bytes type', () => {
+  //   test({
+  //     validator: 'isBytes1',
+  //     valid: ['0x00', '0xff'],
+  //     invalid: ['0xgg', '0x', '0'],
+  //   })
+
+  //   test({
+  //     validator: 'isBytes2',
+  //     valid: ['0x0000', '0xffff'],
+  //     invalid: ['0xgg', '0x', '0'],
+  //   })
+
+  //   // isBytes = isBytes32
+  //   test({
+  //     validator: 'isBytes',
+  //     valid: [
+  //       '0x0000000000000000000000000000000000000000000000000000000000000000',
+  //       '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff',
+  //     ],
+  //     invalid: ['0xgg', '0x', '0'],
+  //   })
+  // })
 })
