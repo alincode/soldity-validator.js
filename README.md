@@ -2,7 +2,7 @@
 
 ![Travis](https://img.shields.io/travis/alincode/solidity-validator.js.svg)
 [![codecov](https://codecov.io/gh/alincode/solidity-validator.js/branch/master/graph/badge.svg)](https://codecov.io/gh/alincode/solidity-validator.js)
-![npm downloads](https://img.shields.io/npm/dt/solidity-validator.js.svg)
+![npm downloads](https://img.shields.io/npm/dt/solidity-validator.svg)
 [![Dependency Status](https://img.shields.io/david/alincode/solidity-validator.js.svg?style=flat)](https://david-dm.org/alincode/solidity-validator.js)
 [![NPM version][npm-image]][npm-url] 
 
