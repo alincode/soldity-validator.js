@@ -1,20 +1,24 @@
-module.exports = assertString;
+module.exports = assertString
 
 function assertString(input) {
-  const isString = (typeof input === 'string' || input instanceof String);
+  const isString = typeof input === 'string' || input instanceof String
 
   if (!isString) {
-    let invalidType;
+    let invalidType
     if (input === null) {
-      invalidType = 'null';
+      invalidType = 'null'
     } else {
-      invalidType = typeof input;
-      if (invalidType === 'object' && input.constructor && input.constructor.hasOwnProperty('name')) {
-        invalidType = input.constructor.name;
+      invalidType = typeof input
+      if (
+        invalidType === 'object' &&
+        input.constructor &&
+        input.constructor.hasOwnProperty('name')
+      ) {
+        invalidType = input.constructor.name
       } else {
-        invalidType = `a ${invalidType}`;
+        invalidType = `a ${invalidType}`
       }
     }
-    throw new TypeError(`Expected string but received ${invalidType}.`);
+    throw new TypeError(`Expected string but received ${invalidType}.`)
   }
 }
