@@ -6,6 +6,7 @@ const isInt = require('./lib/isInt')
 const isUint = require('./lib/isUint')
 const isValid = require('./lib/isValid')
 const isBytes = require('./lib/isBytes')
+const isByteArray = require('./lib/isByteArray')
 
 const version = '0.1.2'
 let validator = {
@@ -17,7 +18,8 @@ let validator = {
   isValid,
   getRange,
   getMessage,
-  isBytes: str => isBytes(str, 32),
+  isBytes: isByteArray,
+  isByte: str => isBytes(str,1),
 }
 
 for (let i = 1; i <= 32; i++) {

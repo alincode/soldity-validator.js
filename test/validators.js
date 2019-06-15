@@ -128,27 +128,38 @@ describe('Validators', () => {
     })
   })
 
-  // it('should validate bytes type', () => {
-  //   test({
-  //     validator: 'isBytes1',
-  //     valid: ['0x00', '0xff'],
-  //     invalid: ['0xgg', '0x', '0'],
-  //   })
+  it('should validate bytes type', () => {
+    test({
+      validator: 'isByte',
+      valid: ['0x00', '0xff'],
+      invalid: ['0xgg', '0x', '0'],
+    })
 
-  //   test({
-  //     validator: 'isBytes2',
-  //     valid: ['0x0000', '0xffff'],
-  //     invalid: ['0xgg', '0x', '0'],
-  //   })
+    test({
+      validator: 'isBytes1',
+      valid: ['0x00', '0xff'],
+      invalid: ['0xgg', '0x', '0'],
+    })
 
-  //   // isBytes = isBytes32
-  //   test({
-  //     validator: 'isBytes',
-  //     valid: [
-  //       '0x0000000000000000000000000000000000000000000000000000000000000000',
-  //       '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff',
-  //     ],
-  //     invalid: ['0xgg', '0x', '0'],
-  //   })
-  // })
+    test({
+      validator: 'isBytes2',
+      valid: ['0x0000', '0xffff'],
+      invalid: ['0xgggg', '0xff', '0x', '0'],
+    })
+  })
+
+  it('should validate bytes array size', () => {
+    
+    // isBytes : 1-32 bytes
+    test({
+      validator: 'isBytes',
+      valid: [
+        '0x0000000000000000000000000000000000000000000000000000000000000000',
+        '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff',
+        '0x00',
+        '0xff',
+      ],
+      invalid: ['0xgg', '0x', '0', '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff'],
+    })
+  })
 })
