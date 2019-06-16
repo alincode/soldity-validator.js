@@ -15,5 +15,6 @@ function isValid(type, value) {
   if (type.search(/\bbool/) != -1) return isBoolean(value)
   if (type.search(/\baddress/) != -1) return isAddress(value)
   if (type.search(/\bbytes/) != -1) return isBytes(value, type.substring(5))
+  if (type.search(/\bbyte/) != -1) return isBytes(value, type.substring(4))
   return true
 }

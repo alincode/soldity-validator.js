@@ -59,6 +59,11 @@ describe('Validators', () => {
       validator.getMessage('address', 'oooooxxxx'),
       'The value is not a valid address.'
     )
+
+    assert.equal(
+      validator.getMessage('byte', 'oooooxxxx'),
+      'The value is not a valid byte.'
+    )
   })
 
   it('get int and uint type range', () => {
@@ -149,7 +154,6 @@ describe('Validators', () => {
   })
 
   it('should validate bytes array size', () => {
-    
     // isBytes : 1-32 bytes
     test({
       validator: 'isBytes',
@@ -159,7 +163,12 @@ describe('Validators', () => {
         '0x00',
         '0xff',
       ],
-      invalid: ['0xgg', '0x', '0', '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff'],
+      invalid: [
+        '0xgg',
+        '0x',
+        '0',
+        '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff',
+      ],
     })
   })
 })

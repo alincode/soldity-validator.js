@@ -81,6 +81,7 @@ validator.getMessage('int8', '129'); // The value is an illegal range.
 validator.getMessage('uint8', '256'); // The value is an illegal range.
 validator.getMessage('bool', '0'); // The value is not a boolean.
 validator.getMessage('address', 'oooooxxxx'); // The value is not a valid address.
+validator.getMessage('byte', 'oooooxxxx'); // The value is not a valid byte.
 ```
 
 ```js
