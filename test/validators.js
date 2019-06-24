@@ -71,6 +71,7 @@ describe('Validators', () => {
     )
 
     assert.equal(validator.getMessage('byte', '0x01'), '')
+    assert.equal(validator.getMessage('bytes2', '0x01'), '')
     assert.equal(validator.getMessage('bytes2', '0x0101'), '')
   })
 
@@ -156,8 +157,19 @@ describe('Validators', () => {
 
     test({
       validator: 'isBytes2',
-      valid: ['0x0000', '0xffff'],
-      invalid: ['0xgggg', '0xff', '0x', '0'],
+      valid: ['0x0000', '0xffff', '0xff'],
+      invalid: ['0xgggg', '0xfffff', '0x', '0'],
+    })
+
+    test({
+      validator: 'isBytes32',
+      valid: ['0x0000', '0xffff', '0xff'],
+      invalid: [
+        '0xgggg',
+        // '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff',
+        '0x',
+        '0',
+      ],
     })
   })
 

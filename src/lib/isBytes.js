@@ -8,5 +8,5 @@ const hexRegularPattern = new RegExp(/^0x[0-9a-fA-F]+/)
 function isBytes(str, exponent) {
   assertString(str)
   const byteSize = (str.length - 2) / 2
-  return byteSize == exponent && hexRegularPattern.test(str)
+  return byteSize <= exponent && hexRegularPattern.test(str)
 }
