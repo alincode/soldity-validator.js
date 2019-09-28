@@ -6,27 +6,19 @@ function test(options) {
   let args = options.args || []
   args.unshift(null)
   if (options.valid) {
-    options.valid.forEach(valid => {
+    options.valid.forEach((valid) => {
       args[0] = valid
       if (validator[options.validator](...args) !== true) {
-        let warning = format(
-          'validator.%s(%s) failed but should have passed',
-          options.validator,
-          args.join(', ')
-        )
+        let warning = format('validator.%s(%s) failed but should have passed', options.validator, args.join(', '))
         throw new Error(warning)
       }
     })
   }
   if (options.invalid) {
-    options.invalid.forEach(invalid => {
+    options.invalid.forEach((invalid) => {
       args[0] = invalid
       if (validator[options.validator](...args) !== false) {
-        let warning = format(
-          'validator.%s(%s) passed but should have failed',
-          options.validator,
-          args.join(', ')
-        )
+        let warning = format('validator.%s(%s) passed but should have failed', options.validator, args.join(', '))
         throw new Error(warning)
       }
     })
@@ -36,42 +28,17 @@ function test(options) {
 describe('Validators', () => {
   it('get type range', () => {
     assert.equal(validator.getMessage('uint8', '255'), '')
-    assert.equal(
-      validator.getMessage(
-        'address',
-        '0xa77451687Ee77cB3DFf16A24446C54DB76C80222'
-      ),
-      ''
-    )
-    assert.equal(
-      validator.getMessage('int8', '129'),
-      'The value is an illegal range.'
-    )
-    assert.equal(
-      validator.getMessage('uint8', '256'),
-      'The value is an illegal range.'
-    )
-    assert.equal(
-      validator.getMessage('bool', '0'),
-      'The value is not a boolean.'
-    )
-    assert.equal(
-      validator.getMessage('address', 'oooooxxxx'),
-      'The value is not a valid address.'
-    )
+    assert.equal(validator.getMessage('address', '0xa77451687Ee77cB3DFf16A24446C54DB76C80222'), '')
+    assert.equal(validator.getMessage('int8', '129'), 'The value is an illegal range.')
+    assert.equal(validator.getMessage('uint8', '256'), 'The value is an illegal range.')
+    assert.equal(validator.getMessage('bool', '0'), 'The value is not a boolean.')
+    assert.equal(validator.getMessage('address', 'oooooxxxx'), 'The value is not a valid address.')
 
-    assert.equal(
-      validator.getMessage('byte', 'oooooxxxx'),
-      'The value is not a valid bytes.'
-    )
+    assert.equal(validator.getMessage('byte', 'oooooxxxx'), 'The value is not a valid bytes.')
 
-    assert.equal(
-      validator.getMessage('bytes1', '0x0111'),
-      'The value is not a valid bytes.'
-    )
+    assert.equal(validator.getMessage('bytes1', '0x0111'), 'The value is not a valid bytes.')
 
     assert.equal(validator.getMessage('byte', '0x01'), '')
-    assert.equal(validator.getMessage('bytes2', '0x01'), '')
     assert.equal(validator.getMessage('bytes2', '0x0101'), '')
   })
 
@@ -98,9 +65,7 @@ describe('Validators', () => {
     assert(validator.isValid('bool', 'true'))
     assert(validator.isValid('uint8', '255'))
     assert(validator.isValid('uint256', '333'))
-    assert(
-      validator.isValid('address', '0xa77451687Ee77cB3DFf16A24446C54DB76C80222')
-    )
+    assert(validator.isValid('address', '0xa77451687Ee77cB3DFf16A24446C54DB76C80222'))
     assert.equal(validator.isValid('address', 'oooooxxxx'), false)
   })
 
@@ -157,19 +122,20 @@ describe('Validators', () => {
 
     test({
       validator: 'isBytes2',
-      valid: ['0x0000', '0xffff', '0xff'],
+      valid: ['0x0000', '0xffff', '0x1234'],
       invalid: ['0xgggg', '0xfffff', '0x', '0'],
     })
 
     test({
-      validator: 'isBytes32',
-      valid: ['0x0000', '0xffff', '0xff'],
-      invalid: [
-        '0xgggg',
-        // '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff',
-        '0x',
-        '0',
-      ],
+      validator: 'isBytes3',
+      valid: ['0x000000', '0xffffff', '0x123456'],
+      invalid: ['0xgggg', '0xffff', '0x', '0'],
+    })
+
+    test({
+      validator: 'isBytes4',
+      valid: ['0x00000000', '0xffffffff', '0x12345678'],
+      invalid: ['0xgggg', '0xfffff', '0x', '0'],
     })
   })
 
@@ -183,12 +149,7 @@ describe('Validators', () => {
         '0x00',
         '0xff',
       ],
-      invalid: [
-        '0xgg',
-        '0x',
-        '0',
-        '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff',
-      ],
+      invalid: ['0xgg', '0x', '0', '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff'],
     })
   })
 })
